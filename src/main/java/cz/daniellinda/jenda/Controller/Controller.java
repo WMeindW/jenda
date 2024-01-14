@@ -26,7 +26,8 @@ public class Controller {
     }
 
     @GetMapping("/")
-    public ResponseEntity<String> index() {
+    public ResponseEntity<String> index(HttpServletRequest request) {
+        System.out.println(request.getHeaderNames());
         return new ResponseEntity<>(index, HttpStatus.OK);
     }
 
@@ -39,7 +40,7 @@ public class Controller {
             valueEntity.setIpAddressLocal(request.getLocalAddr());
             valueEntity.setTime(LocalDateTime.now());
             driver.save(valueEntity);
-            return ResponseEntity.status(302).location(URI.create("https://www.daniellinda.net/jenda/")).build();
+            return ResponseEntity.status(302).location(URI.create("https://daniellinda.net/jenda/")).build();
         }
         return new ResponseEntity<>("Fail: " + value, HttpStatus.BAD_REQUEST);
     }
