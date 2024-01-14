@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class Controller {
             valueEntity.setIpAddressLocal(request.getLocalAddr());
             valueEntity.setTime(LocalDateTime.now());
             driver.save(valueEntity);
-            return new ResponseEntity<>("Successful: " + value, HttpStatus.OK);
+            return ResponseEntity.status(302).location(URI.create("https://www.daniellinda.net/jenda/")).build();
         }
         return new ResponseEntity<>("Fail: " + value, HttpStatus.BAD_REQUEST);
     }
@@ -99,7 +100,7 @@ public class Controller {
             </head>
             <body>
                 <div class="container">
-                    <form action="/set" method="POST">
+                    <form action="/jenda/set" method="POST">
                         <label for="value">Enter a value (0-100):</label>
                         <input type="number" id="value" name="value" min="0" max="100" required>
                         <button type="submit">Submit</button>
