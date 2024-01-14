@@ -26,8 +26,7 @@ public class Controller {
     }
 
     @GetMapping("/")
-    public ResponseEntity<String> index(HttpServletRequest request) {
-        System.out.println(request.getHeaderNames());
+    public ResponseEntity<String> index() {
         return new ResponseEntity<>(index, HttpStatus.OK);
     }
 
